@@ -1,0 +1,59 @@
+<% layout("/layout/boilerplate.ejs")%>
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+    <h1>Edit Listing</h1><br>
+    <form action="/listing/<%= alisting._id %>?_method=PUT" method="POST" novalidate enctype="multipart/form-data" class="needs-validation">
+        <div>
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" name="title" class="form-control" id="title" required value="<%= alisting.title %>"><br>
+        </div>
+        <div>
+            <label for="description"  class="form-label">Description:</label>
+        <textarea name="description" id="description"required class="form-control"> <%= alisting.description %>  </textarea><br>
+        </div>
+        <div class="mb-3">
+            original image:<br>
+            <img src="<%= alisting.image.url %>" alt="listing image" class="img-thumbnail" style="width: 400px; height: 200px;">
+        </div>
+        <div>
+            <label for="image"  class="form-label">Upload new Image:</label>
+            <input type="file" name="image" class="form-control" id="image"   %>"><br>
+        </div>
+        <div class="row">
+        <div class="col-md-4">
+            <label for="price"  class="form-label">Price:</label>
+        <input type="number"class="form-control" name="price" id="price" required value="<%= alisting.price %>"><br>
+        </div>
+        <div class="col-md-8">
+            <label for="location"  class="form-label">Location:</label>
+        <input type="text" class="form-control" name="location" required id="location" value="<%= alisting.location %>"><br>
+        </div>
+    </div>
+        <div>
+            <label for="country"  class="form-label">Country:</label>
+        <input type="text" class="form-control" name="country" required id="country" value="<%= alisting.country %>"><br>
+        </div>
+        <button type="submit" class="btn btn-dark add-btn mt-3" >Update</button>
+    </form>
+</div>
+</div>
+<script>
+    (() => {
+        'use strict'
+      
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+      
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+      
+            form.classList.add('was-validated')
+          }, false)
+        })
+      })()
+</script>
